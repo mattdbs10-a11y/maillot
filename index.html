@@ -2,265 +2,253 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Évaluation Sportive 25/26 U17R1 — Thomas De Caestelare</title>
 <style>
-  :root { --b: #000; }
-  * { box-sizing: border-box; }
-  body {
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
-    padding: 16px;
-    background: #f4f4f4;
-    color: #111;
-  }
-  .sheet {
-    max-width: 1500px;
-    margin: 0 auto;
-    background: #fff;
-    border: 2px solid var(--b);
-  }
-  table { border-collapse: collapse; width: 100%; table-layout: fixed; }
-  td, th { border: 1px solid var(--b); padding: 4px 6px; vertical-align: middle; font-size: 13px; }
-  .title { text-align: center; font-weight: bold; font-size: 20px; }
-  .period { text-align: center; font-weight: bold; font-size: 15px; }
-  .section-head {
-    background: #fff; font-weight: bold; text-align: center;
-    writing-mode: vertical-rl; transform: rotate(180deg);
-    font-size: 16px; width: 70px; letter-spacing: 1px;
-  }
-  .rowlabel { font-weight: 600; }
-  .note { text-align: center; font-weight: bold; width: 70px; }
-  .center { text-align: center; }
-  .bold { font-weight: bold; }
-  .shaded { background: #ededed; }
-  .obs { font-size: 12px; line-height: 1.35; vertical-align: top; }
-  .club {
-    text-align: center; font-weight: bold; font-size: 16px;
-    background: #fff; padding: 14px 4px; line-height: 1.2;
-  }
-  .club .crest { font-size: 26px; }
-  .big { font-size: 15px; }
-  .up { color: #0a7d18; font-weight: bold; }
-  h2.block { text-align: center; font-size: 20px; margin: 0; font-weight: bold; }
-  .narrow { width: 200px; }
-  .legend { max-width: 1500px; margin: 6px auto 0; font-size: 11px; color: #555; }
-  @media print { body { background:#fff; padding:0;} .legend{display:none;} }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, "DejaVu Sans", Helvetica, sans-serif; background: #fff; color: #1a1a1a; }
+  .page { width: 1400px; padding: 28px 32px 36px; }
+
+  /* Header */
+  .top { display: flex; align-items: center; justify-content: space-between;
+         border-bottom: 4px solid #0b2c5e; padding-bottom: 14px; }
+  .crest { display: flex; align-items: center; gap: 14px; }
+  .crest .badge { width: 56px; height: 56px; border-radius: 50%; background: #0b2c5e;
+        color: #fff; display: flex; align-items: center; justify-content: center;
+        font-weight: 800; font-size: 13px; letter-spacing: .5px; }
+  .crest .club { font-size: 20px; font-weight: 800; color: #0b2c5e; line-height: 1.1; }
+  .crest .club small { display: block; font-size: 12px; font-weight: 600; color: #6b7280; }
+  .htitle { text-align: center; }
+  .htitle h1 { font-size: 22px; font-weight: 800; color: #0b2c5e; letter-spacing: .5px; }
+  .htitle .period { font-size: 13px; color: #6b7280; font-weight: 600; margin-top: 2px; }
+  .hright { text-align: right; font-size: 13px; }
+  .hright .name { font-size: 18px; font-weight: 800; }
+  .hright .role { color: #6b7280; font-weight: 600; }
+
+  /* KPI band */
+  .kpis { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin: 18px 0; }
+  .kpi { border: 1px solid #e3e7ee; border-radius: 10px; padding: 12px; text-align: center;
+         background: #f8fafc; }
+  .kpi .v { font-size: 22px; font-weight: 800; color: #0b2c5e; }
+  .kpi .l { font-size: 11px; color: #6b7280; font-weight: 600; margin-top: 3px; text-transform: uppercase; letter-spacing: .4px; }
+  .kpi.accent { background: #0b2c5e; border-color: #0b2c5e; }
+  .kpi.accent .v { color: #fff; } .kpi.accent .l { color: #c7d6ee; }
+
+  /* Averages */
+  .avgs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 18px; }
+  .avg { border: 1px solid #e3e7ee; border-radius: 10px; padding: 10px 16px; display: flex;
+         align-items: center; justify-content: space-between; }
+  .avg .t { font-size: 13px; font-weight: 700; color: #374151; text-transform: uppercase; letter-spacing: .5px; }
+  .avg .n { font-size: 24px; font-weight: 800; color: #0b2c5e; }
+
+  /* Two-column body */
+  .cols { display: grid; grid-template-columns: 1.05fr 1fr; gap: 18px; }
+  .section { border: 1px solid #e3e7ee; border-radius: 12px; overflow: hidden; margin-bottom: 16px; }
+  .section > h2 { background: #0b2c5e; color: #fff; font-size: 14px; font-weight: 800;
+        letter-spacing: .8px; padding: 9px 14px; }
+  .section .body { padding: 12px 14px; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 22px; }
+  .crit { display: flex; align-items: center; justify-content: space-between;
+          padding: 4px 0; border-bottom: 1px dotted #e3e7ee; font-size: 13px; }
+  .crit .c { color: #374151; }
+  .crit .s { font-weight: 800; color: #0b2c5e; min-width: 34px; text-align: right; }
+  .crit .s.up { color: #15803d; }
+  .crit .s.up::after { content: " ▲"; font-size: 9px; vertical-align: middle; }
+
+  .obs { font-size: 12.5px; line-height: 1.5; color: #374151; }
+  .obs b { color: #111827; }
+  .obs h3 { font-size: 13px; color: #0b2c5e; margin-bottom: 6px; text-transform: uppercase; letter-spacing: .5px; }
+  .obs + .obs { margin-top: 14px; padding-top: 14px; border-top: 1px solid #eef1f6; }
+
+  .tests { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 22px; }
+  .obj ul { margin-left: 18px; }
+  .obj li { font-size: 12.5px; line-height: 1.6; color: #374151; }
+  .obj li b { color: #0b2c5e; }
+
+  .prose { border: 1px solid #e3e7ee; border-radius: 12px; padding: 14px 16px; margin-top: 4px; }
+  .prose h2 { font-size: 14px; color: #0b2c5e; font-weight: 800; letter-spacing: .5px; margin-bottom: 6px; }
+  .prose p { font-size: 12.5px; line-height: 1.55; color: #374151; }
+  .prose b { color: #111827; }
+  .legend { font-size: 11px; color: #94a3b8; margin-top: 14px; }
+  .legend .up { color: #15803d; font-weight: 700; }
 </style>
 </head>
 <body>
-<div class="sheet">
-<table>
-  <colgroup>
-    <col style="width:60px"><col style="width:140px">
-    <col style="width:120px"><col style="width:120px"><col style="width:120px"><col style="width:120px">
-    <col style="width:70px">
-    <col style="width:230px"><col style="width:80px">
-    <col style="width:240px">
-  </colgroup>
+<div class="page">
 
-  <!-- Title row -->
-  <tr>
-    <td colspan="2" class="club"><span class="crest">🛡️ FC BONDUES</span></td>
-    <td colspan="4" class="title">EVALUATION SPORTIVE 25/26 U17R1</td>
-    <td colspan="3" class="period">Aout 2025 – Juin 2026</td>
-  </tr>
+  <div class="top">
+    <div class="crest">
+      <div class="badge">FC<br>BOND</div>
+      <div class="club">FC BONDUES<small>Formation &amp; Performance</small></div>
+    </div>
+    <div class="htitle">
+      <h1>ÉVALUATION SPORTIVE 25/26 — U17 R1</h1>
+      <div class="period">Saison complète · Août 2025 → Juin 2026</div>
+    </div>
+    <div class="hright">
+      <div class="name">Thomas De Caestelare</div>
+      <div class="role">Attaquant · Numéro 9 · 1,75 m / 58,6 kg</div>
+    </div>
+  </div>
 
-  <!-- Header band: Notes et Tests / NOTE / OBSERVATIONS -->
-  <tr>
-    <td rowspan="20" class="club">
-      Thomas De Caestelare<br><br>
-      <span style="font-weight:normal;font-size:12px;">Date de naissance</span><br><br>
-      Photo
-    </td>
-    <td colspan="5" class="center bold big">Notes et Tests Athlétiques</td>
-    <td class="center bold">NOTE / 10</td>
-    <td colspan="3" class="center bold big">OBSERVATIONS</td>
-  </tr>
+  <!-- KPI -->
+  <div class="kpis">
+    <div class="kpi accent"><div class="v">16</div><div class="l">Buts (8 en champ.)</div></div>
+    <div class="kpi"><div class="v">7</div><div class="l">Passes décisives</div></div>
+    <div class="kpi"><div class="v">36</div><div class="l">Matches joués</div></div>
+    <div class="kpi"><div class="v">22</div><div class="l">En champ. (seul à 22)</div></div>
+    <div class="kpi"><div class="v">2718</div><div class="l">Minutes (4ème)</div></div>
+    <div class="kpi"><div class="v">92 %</div><div class="l">Présence entraîn.</div></div>
+  </div>
 
   <!-- Averages -->
-  <tr>
-    <td class="rowlabel">Note Moyenne du Joueur sur 10</td>
-    <td class="center bold">Technique :<br><span class="up">8,6</span></td>
-    <td class="center bold">Tactique :<br><span class="up">8,6</span></td>
-    <td colspan="2" class="center bold">Mental :<br>10</td>
-    <td class="section-head" rowspan="13">TECHNIQUE</td>
-    <td class="rowlabel">Prise de balle / enchaînements</td>
-    <td class="note up">9</td>
-    <td class="obs" rowspan="13">
-      Ailier de fixation devenu un véritable <b>numéro 9</b> de surface. Sa montée à la
-      pointe a fait <b>monter tout le bloc plus haut sur le terrain</b> : sa qualité de
-      première touche lancée et ses appuis dos au but fixent les défenseurs et
-      libèrent les couloirs, ce qui a rendu la <b>production collective nettement plus
-      efficace</b>. Sens du but et qualité de finition très au-dessus de la moyenne —
-      <b>meilleur buteur du championnat</b>. Progrès continus et mesurables : remises,
-      jeu de tête, jeu dos au but et conservation sous pression se sont nettement
-      densifiés sur la saison. Doit poursuivre sa progression dans le 1c1 hors surface
-      et la régularité dans la conservation médiane.
-    </td>
-  </tr>
+  <div class="avgs">
+    <div class="avg"><span class="t">Technique</span><span class="n">8,6</span></div>
+    <div class="avg"><span class="t">Tactique</span><span class="n">8,6</span></div>
+    <div class="avg"><span class="t">Mental</span><span class="n">10</span></div>
+  </div>
 
-  <tr>
-    <td class="rowlabel">Note Moyenne sur les matchs joués et<br>uniquement en R1 &amp; Coupes</td>
-    <td colspan="4" class="center bold"><span class="up">7,4</span></td>
-    <td class="rowlabel">Pieds droit</td><td class="note">9</td>
-  </tr>
-  <tr>
-    <td class="rowlabel">Date</td>
-    <td class="center shaded bold">Septembre</td>
-    <td class="center shaded bold">Janvier</td>
-    <td class="center shaded bold">Juin</td>
-    <td></td>
-    <td class="rowlabel">Pieds gauche</td><td class="note up">7</td>
-  </tr>
-  <tr>
-    <td class="rowlabel">Jonglerie D/G/T</td>
-    <td class="center">50-50-11</td><td class="center"></td><td class="center"></td><td></td>
-    <td class="rowlabel">Passes courtes</td><td class="note">8,5</td>
-  </tr>
-  <tr>
-    <td class="rowlabel">Taille</td>
-    <td colspan="4" class="center">1,75 m</td>
-    <td class="rowlabel">Passes longues</td><td class="note">8,5</td>
-  </tr>
-  <tr>
-    <td class="rowlabel">Poids</td>
-    <td colspan="4" class="center">58,6 kg</td>
-    <td class="rowlabel">Frappes puissantes</td><td class="note">9</td>
-  </tr>
-  <tr>
-    <td class="rowlabel">Test VMA</td>
-    <td colspan="4" class="center">18</td>
-    <td class="rowlabel">Frappes placées</td><td class="note">9</td>
-  </tr>
-  <tr>
-    <td class="rowlabel">Vitesse 10m (inférieur ou égal à)</td>
-    <td colspan="4" class="center">1'81</td>
-    <td class="rowlabel">Centres</td><td class="note">8</td>
-  </tr>
-  <tr>
-    <td class="rowlabel">Vitesse 40m (inférieur ou égal à)</td>
-    <td colspan="4" class="center">5'47</td>
-    <td class="rowlabel">Duels</td><td class="note up">8</td>
-  </tr>
-  <tr>
-    <td colspan="5" rowspan="4" class="bold big" style="vertical-align:top;">
-      OBJECTIFS PERSONNELS ET COLLECTIFS :
-      <ul style="font-weight:normal;font-size:12px;margin:8px 0 0 18px;line-height:1.5;">
-        <li>Apprendre à <b>se faire confiance ++</b> dans tous les secteurs.</li>
-        <li>Ne pas laisser les <b>pensées parasites</b> perturber le geste de l'attaquant.</li>
-        <li>Construire un <b>mindset de tueur</b> devant le but.</li>
-        <li>Maintenir la dynamique de progrès et peser sur le bloc adverse en #9.</li>
-      </ul>
-    </td>
-    <td class="rowlabel">Dribbles</td><td class="note up">8</td>
-  </tr>
-  <tr><td class="rowlabel">Jeu de tête offensif</td><td class="note up">7,5</td></tr>
-  <tr><td class="rowlabel">Jeu de tête défensif</td><td class="note up">6,5</td></tr>
-  <tr><td class="rowlabel">Remise / Déviation</td><td class="note up">9</td></tr>
+  <div class="cols">
+    <!-- LEFT: notes -->
+    <div>
+      <div class="section">
+        <h2>TECHNIQUE</h2>
+        <div class="body"><div class="grid2">
+          <div class="crit"><span class="c">Prise de balle / enchaînements</span><span class="s up">9</span></div>
+          <div class="crit"><span class="c">Frappes placées</span><span class="s">9</span></div>
+          <div class="crit"><span class="c">Pied droit</span><span class="s">9</span></div>
+          <div class="crit"><span class="c">Centres</span><span class="s">8</span></div>
+          <div class="crit"><span class="c">Pied gauche</span><span class="s up">7</span></div>
+          <div class="crit"><span class="c">Duels</span><span class="s up">8</span></div>
+          <div class="crit"><span class="c">Passes courtes</span><span class="s">8,5</span></div>
+          <div class="crit"><span class="c">Dribbles</span><span class="s up">8</span></div>
+          <div class="crit"><span class="c">Passes longues</span><span class="s">8,5</span></div>
+          <div class="crit"><span class="c">Jeu de tête offensif</span><span class="s up">7,5</span></div>
+          <div class="crit"><span class="c">Frappes puissantes</span><span class="s">9</span></div>
+          <div class="crit"><span class="c">Jeu de tête défensif</span><span class="s up">6,5</span></div>
+          <div class="crit"><span class="c">Remise / Déviation</span><span class="s up">9</span></div>
+          <div class="crit"><span class="c">&nbsp;</span><span class="s">&nbsp;</span></div>
+        </div></div>
+      </div>
 
-  <!-- TACTIQUE -->
-  <tr>
-    <td class="section-head" rowspan="8">TACTIQUE</td>
-    <td class="rowlabel">Déplacement Offensif - Appuis</td><td class="note">9</td>
-    <td class="obs" rowspan="8">
-      <b>Progrès continus et marquants</b> sur tout l'aspect tactique. Joueur à l'aise
-      dans la verticalité en catégorie plus basse, il est devenu un <b>point d'appui et
-      de profondeur de très haut niveau</b>. Son repositionnement en <b>9</b> a
-      <b>changé sa contribution dans le jeu</b> : il fixe la ligne défensive, attaque
-      l'espace et permet à l'équipe de <b>récupérer et de jouer beaucoup plus haut</b>.
-      Grosse capacité à répéter les courses et joueur clé du <b>pressing</b>, déclencheur
-      du bloc. Cette évolution a <b>rendu la production collective plus efficace</b> et
-      plus directe. Lecture du jeu et prise d'infos en nette hausse.
-    </td>
-  </tr>
-  <tr><td class="rowlabel">Déplacement Offensif - Profondeur</td><td class="note up">8,5</td></tr>
-  <tr><td class="rowlabel">Déplacement Defensif - Cadrage</td><td class="note up">7,5</td></tr>
-  <tr><td class="rowlabel">Déplacement Défensif - Profondeur</td><td class="note up">7,5</td></tr>
-  <tr><td class="rowlabel">Replacement</td><td class="note up">8,5</td></tr>
-  <tr><td class="rowlabel">Discipline</td><td class="note">9</td></tr>
-  <tr><td class="rowlabel">Concentration</td><td class="note">9</td></tr>
-  <tr><td class="rowlabel">Lecture du jeu / Prise d'infos</td><td class="note up">9</td></tr>
+      <div class="section">
+        <h2>TACTIQUE</h2>
+        <div class="body"><div class="grid2">
+          <div class="crit"><span class="c">Dépl. offensif · Appuis</span><span class="s">9</span></div>
+          <div class="crit"><span class="c">Replacement</span><span class="s up">8,5</span></div>
+          <div class="crit"><span class="c">Dépl. offensif · Profondeur</span><span class="s up">8,5</span></div>
+          <div class="crit"><span class="c">Discipline</span><span class="s">9</span></div>
+          <div class="crit"><span class="c">Dépl. défensif · Cadrage</span><span class="s up">7,5</span></div>
+          <div class="crit"><span class="c">Concentration</span><span class="s">9</span></div>
+          <div class="crit"><span class="c">Dépl. défensif · Profondeur</span><span class="s up">7,5</span></div>
+          <div class="crit"><span class="c">Lecture du jeu / Prise d'infos</span><span class="s up">9</span></div>
+        </div></div>
+      </div>
 
-  <!-- MENTAL -->
-  <tr>
-    <td colspan="6" class="shaded bold center" style="font-size:13px;">STATISTIQUES FIN DE SAISON</td>
-    <td class="section-head" rowspan="6">MENTAL</td>
-    <td class="rowlabel">Agressivité / Engagement</td><td class="note">10</td>
-    <td class="obs" rowspan="6">
-      Éthique de travail de très haut niveau, joueur exemplaire. Bravo.<br><br>
-      Prochain palier <b>100% mental</b> : <b>apprendre à se faire confiance ++</b> et
-      <b>ne plus laisser les pensées parasites</b> venir perturber l'attaquant dans la
-      surface. L'objectif est de <b>se construire un mindset de tueur</b> : froideur et
-      certitude au moment de conclure, pour transformer une saison déjà remarquable
-      en référence.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" class="rowlabel">Présence entraînement</td>
-    <td colspan="4" class="center bold">92 %</td>
-    <td class="rowlabel">Investissement</td><td class="note">10</td>
-  </tr>
-  <tr>
-    <td colspan="2" class="rowlabel">Matches joués</td>
-    <td colspan="4" class="center bold">36 (dont 22 en championnat — seul joueur à 22)</td>
-    <td class="rowlabel">Etat d'esprit</td><td class="note">10</td>
-  </tr>
-  <tr>
-    <td colspan="2" class="rowlabel">Temps de jeu</td>
-    <td colspan="4" class="center bold">2718 minutes (4ème de l'effectif)</td>
-    <td class="rowlabel">Culture de travail</td><td class="note">10</td>
-  </tr>
-  <tr>
-    <td colspan="2" class="rowlabel">Buts</td>
-    <td colspan="4" class="center bold">16 buts (dont 8 en championnat)</td>
-    <td class="rowlabel">Compétiteur</td><td class="note">10</td>
-  </tr>
-  <tr>
-    <td colspan="2" class="rowlabel">Passes décisives</td>
-    <td colspan="4" class="center bold">7 PD</td>
-    <td></td><td></td>
-  </tr>
+      <div class="section">
+        <h2>MENTAL</h2>
+        <div class="body"><div class="grid2">
+          <div class="crit"><span class="c">Agressivité / Engagement</span><span class="s">10</span></div>
+          <div class="crit"><span class="c">Culture de travail</span><span class="s">10</span></div>
+          <div class="crit"><span class="c">Investissement</span><span class="s">10</span></div>
+          <div class="crit"><span class="c">Compétiteur</span><span class="s">10</span></div>
+          <div class="crit"><span class="c">État d'esprit</span><span class="s">10</span></div>
+          <div class="crit"><span class="c">&nbsp;</span><span class="s">&nbsp;</span></div>
+        </div></div>
+      </div>
 
-  <!-- Profil joueur -->
-  <tr>
-    <td class="center" style="vertical-align:middle;">Photo</td>
-    <td colspan="2" style="vertical-align:middle;"><h2 class="block">Profil joueur :</h2></td>
-    <td colspan="7" class="obs" style="font-size:12.5px;">
+      <div class="section">
+        <h2>TESTS ATHLÉTIQUES &amp; OBJECTIFS</h2>
+        <div class="body">
+          <div class="tests">
+            <div class="crit"><span class="c">VMA</span><span class="s">18</span></div>
+            <div class="crit"><span class="c">Vitesse 10 m</span><span class="s">1'81</span></div>
+            <div class="crit"><span class="c">Vitesse 40 m</span><span class="s">5'47</span></div>
+            <div class="crit"><span class="c">Jonglerie D/G/T</span><span class="s">50-50-11</span></div>
+            <div class="crit"><span class="c">Taille</span><span class="s">1,75 m</span></div>
+            <div class="crit"><span class="c">Poids</span><span class="s">58,6 kg</span></div>
+          </div>
+          <div class="obj" style="margin-top:10px;">
+            <h3 style="font-size:12px;color:#0b2c5e;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;">Objectifs personnels &amp; collectifs</h3>
+            <ul>
+              <li>Apprendre à <b>se faire confiance ++</b> dans tous les secteurs.</li>
+              <li>Ne pas laisser les <b>pensées parasites</b> perturber le geste de l'attaquant.</li>
+              <li>Se construire un <b>mindset de tueur</b> devant le but.</li>
+              <li>Maintenir la dynamique de <b>progrès</b> et peser sur le bloc adverse en n°9.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: observations -->
+    <div>
+      <div class="section" style="height:100%;">
+        <h2>OBSERVATIONS</h2>
+        <div class="body">
+          <div class="obs">
+            <h3>Technique</h3>
+            Ailier de fixation devenu un véritable <b>numéro 9</b> de surface. Sa qualité de
+            <b>première touche lancée</b> et son jeu dos au but fixent les défenseurs et libèrent
+            les couloirs. Sens du but et finition très au-dessus de la moyenne :
+            <b>2ème meilleur buteur du championnat</b>. <b>Progrès continus et mesurables</b> sur
+            les remises, le jeu de tête, le jeu dos au but et la conservation sous pression.
+            Doit poursuivre dans le 1c1 hors surface et la régularité en conservation médiane.
+          </div>
+          <div class="obs">
+            <h3>Tactique</h3>
+            <b>Progrès marquants</b> sur tout le plan tactique. Son passage en <b>9</b> a
+            <b>changé sa contribution dans le jeu</b> : il fixe la ligne défensive, attaque
+            l'espace et permet à l'équipe de <b>jouer beaucoup plus haut</b> sur le terrain.
+            Cette évolution a rendu la <b>production collective plus efficace</b> et plus directe.
+            Grosse capacité à répéter les courses, joueur clé du <b>pressing</b> et déclencheur
+            du bloc. Lecture du jeu en nette hausse.
+          </div>
+          <div class="obs">
+            <h3>Mental</h3>
+            Éthique de travail de très haut niveau, joueur exemplaire. <b>Bravo.</b> Prochain
+            palier 100 % mental : <b>se faire confiance ++</b> et <b>ne plus laisser les pensées
+            parasites</b> perturber l'attaquant dans la surface, pour installer un véritable
+            <b>mindset de tueur</b> — froideur et certitude au moment de conclure.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Profil & Bilan -->
+  <div class="prose">
+    <h2>PROFIL JOUEUR</h2>
+    <p>
       Thomas est un attaquant capable d'évoluer sur plusieurs postes offensifs, désormais
-      installé comme <b>numéro 9</b> avec une vraie efficacité dans la surface. Son atout
-      majeur reste sa <b>qualité de première touche</b>, souvent orientée vers l'avant,
-      qui lui permet d'enchaîner vite et de se mettre en situation de frappe. Sa technique
-      est propre et fonctionnelle, au service de l'efficacité plus que du spectacle.<br>
-      Au fil de la saison, sa <b>contribution au jeu a changé</b> : en fixant la ligne et
-      en jouant dos au but, il a fait <b>monter l'équipe plus haut</b> et rendu la
-      <b>production collective plus fluide et plus efficace</b>. Il a réalisé d'énormes
-      <b>progrès</b> dans la conservation sous pression, le jeu d'appui et le choix de ses
-      appels. Le prochain levier est mental : <b>se faire davantage confiance</b>, ne pas
-      se laisser parasiter et installer un <b>mindset de tueur</b>.
-    </td>
-  </tr>
+      installé comme <b>numéro 9</b> avec une vraie efficacité dans la surface. Son atout majeur
+      reste sa <b>qualité de première touche</b>, souvent orientée vers l'avant, qui lui permet
+      d'enchaîner vite et de se mettre en situation de frappe. Au fil de la saison, sa
+      <b>contribution au jeu a changé</b> : en fixant la ligne et en jouant dos au but, il a fait
+      <b>monter l'équipe plus haut</b> et rendu la <b>production collective plus fluide et plus
+      efficace</b>. Énormes <b>progrès</b> dans la conservation sous pression, le jeu d'appui et
+      le choix des appels. Prochain levier : <b>se faire davantage confiance</b> et installer un
+      <b>mindset de tueur</b>.
+    </p>
+  </div>
 
-  <!-- Bilan -->
-  <tr>
-    <td class="center" style="vertical-align:middle;"></td>
-    <td colspan="2" style="vertical-align:middle;"><h2 class="block">Bilan :</h2></td>
-    <td colspan="7" class="obs" style="font-size:12.5px;">
-      Thomas est un attaquant fiable, efficace et engagé, en <b>progression continue</b>,
-      dont la marge repose sur le travail et la régularité. Son profil est précieux pour
-      une équipe ambitieuse. <b>Gros travailleur</b>, exemplaire dans l'investissement et
-      l'état d'esprit (<b>92 %</b> de présence). Sa bascule en <b>9</b> a structuré le jeu
-      offensif et permis au collectif de jouer plus haut et plus efficacement. Bilan
-      chiffré éloquent : <b>36 matches</b> (seul joueur à <b>22 en championnat</b>),
-      <b>2718 minutes</b> (4ème de l'effectif), <b>16 buts</b> (8 en championnat) et
-      <b>7 passes décisives</b>, ce qui explique son statut de <b>meilleur buteur du
-      championnat</b>. Il montre une vraie culture de la performance. Le dernier palier
-      est mental : se faire totalement confiance et adopter un <b>mindset de tueur</b>
-      pour répondre présent dans tous les moments clés.
-    </td>
-  </tr>
-</table>
+  <div class="prose">
+    <h2>BILAN</h2>
+    <p>
+      Attaquant fiable, efficace et engagé, en <b>progression continue</b>, dont la marge repose
+      sur le travail et la régularité. <b>Gros travailleur</b>, exemplaire dans l'investissement
+      et l'état d'esprit (<b>92 %</b> de présence). Sa bascule en <b>9</b> a structuré le jeu
+      offensif et permis au collectif de jouer plus haut et plus efficacement. Bilan chiffré
+      éloquent : <b>36 matches</b> (seul joueur à <b>22 en championnat</b>), <b>2718 minutes</b>
+      (4ème de l'effectif), <b>16 buts</b> (8 en championnat) et <b>7 passes décisives</b>, ce qui
+      explique son statut de <b>2ème meilleur buteur du championnat</b>. Vraie culture de la
+      performance. Dernier palier, mental : se faire totalement confiance et adopter un
+      <b>mindset de tueur</b> pour répondre présent dans tous les moments clés.
+    </p>
+  </div>
+
+  <div class="legend">Notes marquées d'un <span class="up">▲</span> = revues à la hausse vs. évaluation de mi-saison (progrès constatés sur la saison).</div>
+
 </div>
-<p class="legend">Cellules en <span style="color:#0a7d18;font-weight:bold;">vert</span> = notes revues à la hausse vs. évaluation de mi-saison (progrès constatés sur la saison).</p>
 </body>
 </html>
