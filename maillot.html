@@ -6,46 +6,61 @@
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: Arial, Helvetica, sans-serif; background: #fff; color: #000; font-size: 13px; }
-  .page { width: 700px; margin: 0 auto; padding: 20px; }
+  .page { width: 680px; margin: 0 auto; padding: 24px; }
 
-  .header-top { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
-  .logo { width: 60px; height: 60px; border: 2px solid #000; display: flex; align-items: center;
-          justify-content: center; font-weight: 800; font-size: 10px; text-align: center;
-          line-height: 1.2; }
-  .title-box { flex: 1; border: 1px solid #000; text-align: center; padding: 8px;
-               font-size: 15px; font-weight: 700; }
+  /* En-tête */
+  .header { display: flex; align-items: stretch; border: 1px solid #000; margin-bottom: 0; }
+  .logo-cell { width: 80px; min-height: 70px; border-right: 1px solid #000;
+               display: flex; flex-direction: column; align-items: center;
+               justify-content: center; padding: 6px; }
+  .logo-img { width: 62px; height: 62px; border: 2px solid #000; border-radius: 4px;
+              display: flex; flex-direction: column; align-items: center;
+              justify-content: center; font-weight: 900; font-size: 9px;
+              text-align: center; line-height: 1.3; letter-spacing: .5px; }
+  .title-cell { flex: 1; display: flex; align-items: center; justify-content: center;
+                font-size: 16px; font-weight: 700; text-align: center; padding: 10px; }
 
-  table.info { width: 100%; border-collapse: collapse; margin-bottom: 4px; }
-  table.info td { border: 1px solid #000; padding: 4px 8px; }
-  table.info td.label { font-weight: 600; white-space: nowrap; }
+  /* Infos */
+  table.info { width: 100%; border-collapse: collapse; }
+  table.info td { border: 1px solid #000; padding: 5px 8px; border-top: none; }
 
-  table.entries { width: 100%; border-collapse: collapse; margin: 10px 0; }
-  table.entries th { border: 1px solid #000; padding: 4px 8px; text-align: left;
-                     background: #f0f0f0; font-weight: 700; }
-  table.entries td { border: 1px solid #000; padding: 3px 8px; }
+  /* Tableau des déplacements */
+  table.entries { width: 100%; border-collapse: collapse; margin-top: 14px; }
+  table.entries th { border: 1px solid #000; padding: 5px 8px; text-align: left; font-weight: 700; }
+  table.entries td { border: 1px solid #000; padding: 3px 8px; height: 22px; }
   table.entries td.kms { text-align: center; }
-  table.entries tr.empty td { height: 18px; }
+  table.entries tr.empty td { height: 22px; }
 
-  .footer { margin-top: 10px; font-size: 11px; }
-  .footer-row { display: flex; align-items: flex-start; gap: 20px; margin-top: 6px; }
-  .sig-block { flex: 1; }
-  .sig-block .sig-line { border-bottom: 1px solid #000; margin-top: 30px; margin-bottom: 4px; }
-  .total-block { text-align: right; font-weight: 700; font-size: 14px; }
-  .bareme { flex: 1; }
+  /* Pied de page */
+  .footer { margin-top: 4px; font-size: 11.5px; }
+  .note { font-style: italic; margin: 10px 0 6px; font-size: 11px; }
+  .footer-mid { display: flex; align-items: baseline; gap: 16px; border-top: 1px solid #ccc;
+                padding-top: 6px; }
+  .footer-mid .date-km { white-space: nowrap; }
+  .footer-mid .bareme { flex: 1; }
+  .footer-mid .total { font-weight: 700; font-size: 14px; white-space: nowrap; }
+  .sigs { display: flex; gap: 30px; margin-top: 22px; }
+  .sig { flex: 1; }
+  .sig .label { font-weight: 600; }
+  .sig .line { border-bottom: 1px solid #000; margin-top: 40px; }
 </style>
 </head>
 <body>
 <div class="page">
 
-  <div class="header-top">
-    <div class="logo">BONDUES<br>FC</div>
-    <div class="title-box">MOIS DE mois / année_ Mars 2026</div>
+  <!-- En-tête -->
+  <div class="header">
+    <div class="logo-cell">
+      <div class="logo-img">BONDUES<br>F.C.</div>
+    </div>
+    <div class="title-cell">MOIS DE mois / année_ Mars 2026</div>
   </div>
 
+  <!-- Informations personnelles -->
   <table class="info">
     <tr>
-      <td class="label">Nom : DUBUS</td>
-      <td>Prénom : Matthieu</td>
+      <td style="width:50%">Nom : <strong>DUBUS</strong></td>
+      <td>Prénom : <strong>Matthieu</strong></td>
     </tr>
     <tr>
       <td colspan="2">Qualité : Educateur U17</td>
@@ -58,18 +73,19 @@
       <td>Type : citadine</td>
     </tr>
     <tr>
-      <td></td>
+      <td>&nbsp;</td>
       <td>Puissance fiscale : 5cv</td>
     </tr>
   </table>
 
+  <!-- Tableau des déplacements -->
   <table class="entries">
     <thead>
       <tr>
-        <th>Date</th>
-        <th>Motif</th>
-        <th>Trajet</th>
-        <th>Kms parcourus</th>
+        <th style="width:14%">Date</th>
+        <th style="width:26%">Motif</th>
+        <th style="width:40%">Trajet</th>
+        <th style="width:20%">Kms parcourus</th>
       </tr>
     </thead>
     <tbody>
@@ -90,27 +106,28 @@
       <tr><td>27/3</td><td>Entrainement</td><td>Auchy-Bondues</td><td class="kms">46</td></tr>
       <tr><td>29/3</td><td>Entraînement</td><td>Auchy-Bondues</td><td class="kms">46</td></tr>
       <tr><td>30/3</td><td>Entrainement</td><td>Auchy-Bondues</td><td class="kms">46</td></tr>
-      <tr class="empty"><td></td><td></td><td></td><td></td></tr>
-      <tr class="empty"><td></td><td></td><td></td><td></td></tr>
-      <tr class="empty"><td></td><td></td><td></td><td></td></tr>
+      <tr class="empty"><td>&nbsp;</td><td></td><td></td><td></td></tr>
+      <tr class="empty"><td>&nbsp;</td><td></td><td></td><td></td></tr>
+      <tr class="empty"><td>&nbsp;</td><td></td><td></td><td></td></tr>
     </tbody>
   </table>
 
+  <!-- Pied de page -->
   <div class="footer">
-    <p style="font-size:11px;font-style:italic;">Joindre une copie de la carte grise pour la première demande.</p>
-    <div class="footer-row" style="margin-top:10px;">
-      <div>5/3/26 &nbsp;&nbsp;&nbsp; 782</div>
-      <div class="bareme">Barème de remboursement par km :</div>
-      <div class="total-block">TOTAL à rembourser : 350 €</div>
+    <p class="note">Joindre une copie de la carte grise pour la première demande.</p>
+    <div class="footer-mid">
+      <span class="date-km">5/3/26 &nbsp;&nbsp; 782</span>
+      <span class="bareme">Barème de remboursement par km :</span>
+      <span class="total">TOTAL à rembourser : 350 €</span>
     </div>
-    <div class="footer-row" style="margin-top:20px;">
-      <div class="sig-block">
-        Signature du demandeur :
-        <div class="sig-line"></div>
+    <div class="sigs">
+      <div class="sig">
+        <span class="label">Signature du demandeur :</span>
+        <div class="line"></div>
       </div>
-      <div class="sig-block">
-        Signature du Président :
-        <div class="sig-line"></div>
+      <div class="sig">
+        <span class="label">Signature du Président :</span>
+        <div class="line"></div>
       </div>
     </div>
   </div>
