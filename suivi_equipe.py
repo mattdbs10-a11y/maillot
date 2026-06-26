@@ -16,7 +16,7 @@ import os
 import openpyxl
 from openpyxl import Workbook
 from openpyxl.styles import PatternFill, Font, Alignment, Border, Side
-from openpyxl.formatting.rule import FormulaRule
+from openpyxl.formatting.rule import FormulaRule, CellIsRule
 from openpyxl.worksheet.datavalidation import DataValidation
 from openpyxl.utils import get_column_letter
 
@@ -295,22 +295,21 @@ def build_page2(ws):
     ws.add_data_validation(dv)
 
     # ── Formatage conditionnel par valeur (P/AJ/AI/B) ────────────────────────
-    # Chaque règle s'applique sur toutes les plages de séances
-    # La formule utilise la cellule en haut à gauche de chaque plage (référence relative)
+    # CellIsRule = compatible Numbers (contrairement à FormulaRule)
     cf_values = [
         ("P",  "27AE60", "FFFFFF"),   # Présent    → vert
         ("AJ", "F1C40F", "5D4E00"),   # Abs. just. → jaune
         ("AI", "E74C3C", "FFFFFF"),   # Abs. injus → rouge
         ("B",  "8E44AD", "FFFFFF"),   # Blessé     → violet
     ]
-    for rng in ranges:
-        top_left = rng.split(":")[0]   # ex: "B6"
-        for val, bg_hex, fg_hex in cf_values:
-            ws.conditional_formatting.add(rng, FormulaRule(
-                formula=[f'{top_left}="{val}"'],
-                fill=F(bg_hex),
-                font=Font(bold=True, color=fg_hex, name="Arial", size=10)
-            ))
+    full_range = " ".join(ranges)
+    for val, bg_hex, fg_hex in cf_values:
+        ws.conditional_formatting.add(full_range, CellIsRule(
+            operator="equal",
+            formula=[f'"{val}"'],
+            fill=F(bg_hex),
+            font=Font(bold=True, color=fg_hex, name="Arial", size=10)
+        ))
 
     # ── Lignes joueurs ────────────────────────────────────────────────────────
     for r in range(PLAYER_ROW, PLAYER_ROW + NB_PLAYERS):
@@ -728,19 +727,22 @@ def build_page5(ws):
            formula=f"=IFERROR(D{r}/B{r},\"\")",
            bg=bg_row, bold=True, h="center", fmt="0.00", brd=True)
 
-    # ── Formatage conditionnel IRE ────────────────────────────────────────────
+    # ── Formatage conditionnel IRE (CellIsRule = compatible Numbers) ─────────
     ire_range = f"J{PLAYER_ROW}:J{PLAYER_ROW+NB_PLAYERS-1}"
 
-    ws.conditional_formatting.add(ire_range, FormulaRule(
-        formula=[f"AND(J{PLAYER_ROW}<>\"\",J{PLAYER_ROW}>1.1)"],
+    # Rouge : > 1,10
+    ws.conditional_formatting.add(ire_range, CellIsRule(
+        operator="greaterThan", formula=["1.1"],
         fill=F("FFCDD2"), font=Font(color="C0392B", bold=True, name="Arial")))
 
-    ws.conditional_formatting.add(ire_range, FormulaRule(
-        formula=[f"AND(J{PLAYER_ROW}>=1,J{PLAYER_ROW}<=1.1)"],
+    # Vert : entre 1 et 1,10
+    ws.conditional_formatting.add(ire_range, CellIsRule(
+        operator="between", formula=["1", "1.1"],
         fill=F("D5F5E3"), font=Font(color="1E8449", bold=True, name="Arial")))
 
-    ws.conditional_formatting.add(ire_range, FormulaRule(
-        formula=[f"AND(J{PLAYER_ROW}<>\"\",J{PLAYER_ROW}<1)"],
+    # Orange : < 1
+    ws.conditional_formatting.add(ire_range, CellIsRule(
+        operator="lessThan", formula=["1"],
         fill=F("FAD7A0"), font=Font(color="D35400", bold=True, name="Arial")))
 
     # ── Ligne moyenne équipe ──────────────────────────────────────────────────
