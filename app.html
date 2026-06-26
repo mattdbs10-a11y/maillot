@@ -94,6 +94,32 @@
     .stat-val { font-size:26px; font-weight:900; color:var(--green); }
     .stat-label { font-size:10px; text-transform:uppercase; letter-spacing:1px; color:var(--muted); margin-top:4px; }
 
+    /* IRE CARD */
+    .ire-card { width:100%; max-width:560px; border-radius:16px; padding:18px 20px; margin-bottom:14px; border:1px solid; position:relative; overflow:hidden; }
+    .ire-card::before { content:''; position:absolute; inset:0; opacity:.07; }
+    .ire-card.ire-elite  { border-color:rgba(0,255,136,.5); background:rgba(0,255,136,.06); }
+    .ire-card.ire-elite::before  { background:var(--green); }
+    .ire-card.ire-good   { border-color:rgba(0,170,255,.4); background:rgba(0,170,255,.06); }
+    .ire-card.ire-good::before   { background:var(--blue); }
+    .ire-card.ire-mid    { border-color:rgba(255,215,0,.4); background:rgba(255,215,0,.06); }
+    .ire-card.ire-mid::before    { background:var(--gold); }
+    .ire-card.ire-low    { border-color:rgba(255,68,85,.35); background:rgba(255,68,85,.05); }
+    .ire-card.ire-low::before    { background:var(--red); }
+    .ire-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+    .ire-label-tag { font-size:10px; text-transform:uppercase; letter-spacing:2px; color:var(--muted); }
+    .ire-score { font-size:42px; font-weight:900; line-height:1; }
+    .ire-score.ire-elite { color:var(--green); text-shadow:0 0 20px rgba(0,255,136,.5); }
+    .ire-score.ire-good  { color:var(--blue);  text-shadow:0 0 20px rgba(0,170,255,.5); }
+    .ire-score.ire-mid   { color:var(--gold);  text-shadow:0 0 20px rgba(255,215,0,.4); }
+    .ire-score.ire-low   { color:var(--red);   text-shadow:0 0 14px rgba(255,68,85,.4); }
+    .ire-mention { font-size:14px; font-weight:800; margin-bottom:4px; }
+    .ire-desc { font-size:12px; color:var(--muted); line-height:1.5; }
+    .ire-gauge-wrap { margin-top:14px; }
+    .ire-gauge-track { height:10px; border-radius:5px; background:var(--bg2); position:relative; overflow:visible; }
+    .ire-gauge-fill { height:100%; border-radius:5px; transition:width 1.2s ease; }
+    .ire-gauge-marker { position:absolute; top:-4px; width:3px; height:18px; border-radius:2px; background:#fff; opacity:.7; transform:translateX(-50%); }
+    .ire-gauge-labels { display:flex; justify-content:space-between; margin-top:5px; font-size:10px; color:var(--muted); }
+
     /* PROGRESS */
     .prog-wrap { margin-bottom:12px; }
     .prog-head { display:flex; justify-content:space-between; margin-bottom:5px; }
@@ -359,6 +385,7 @@
 
       <div class="tab-content active" id="pt-stats">
         <div class="stats-grid" id="p-stats"></div>
+        <div id="p-ire"></div>
         <div class="card">
           <div class="card-title">📈 Progression saison</div>
           <div id="p-progs"></div>
@@ -762,6 +789,7 @@ function checkPin() {
 function renderPlayerCard(p) {
   renderProfile(p);
   renderStatsGrid(p);
+  renderIRE(p);
   renderProgress(p);
   renderBadges(p);
   renderHistory(p);
@@ -780,6 +808,53 @@ function renderProfile(p) {
       <h2>${p.name}</h2>
       <div class="pmeta">${S.settings.clubName} · ${S.settings.clubTeam}</div>
       <div class="ire-badge">⚡ IRE ${p.ire.toFixed(2)}</div>
+    </div>`;
+}
+
+function ireClass(ire) {
+  if (ire >= 1.80) return 'ire-elite';
+  if (ire >= 1.50) return 'ire-good';
+  if (ire >= 1.20) return 'ire-mid';
+  return 'ire-low';
+}
+
+function renderIRE(p) {
+  const cls = ireClass(p.ire);
+  const mentions = {
+    'ire-elite': { lbl: '👑 Joueur Élite',        desc: 'Présence exemplaire et taux de convocation maximal. Indispensable pour le coach.' },
+    'ire-good':  { lbl: '⚡ Joueur Indispensable', desc: 'Très bon ratio présence / convocation. Le coach fait régulièrement appel à toi.' },
+    'ire-mid':   { lbl: '📈 En progression',       desc: 'Bon niveau global. Améliore ta régularité aux entraînements pour grimper.' },
+    'ire-low':   { lbl: '💪 À améliorer',          desc: 'Présence ou convocation à renforcer. Chaque entraînement compte !' },
+  };
+  const m = mentions[cls];
+  // IRE scale : 0 → 2.5 max display
+  const pct = Math.min(p.ire / 2.5, 1) * 100;
+  const gradients = {
+    'ire-elite': 'linear-gradient(90deg,var(--blue),var(--green))',
+    'ire-good':  'linear-gradient(90deg,#0066cc,var(--blue))',
+    'ire-mid':   'linear-gradient(90deg,#cc8800,var(--gold))',
+    'ire-low':   'linear-gradient(90deg,#990022,var(--red))',
+  };
+  document.getElementById('p-ire').innerHTML = `
+    <div class="ire-card ${cls}">
+      <div class="ire-top">
+        <div>
+          <div class="ire-label-tag">Indice IRE · Convocation ÷ Présence</div>
+          <div class="ire-mention" style="margin-top:6px;">${m.lbl}</div>
+          <div class="ire-desc">${m.desc}</div>
+        </div>
+        <div class="ire-score ${cls}">${p.ire.toFixed(2)}</div>
+      </div>
+      <div class="ire-gauge-wrap">
+        <div class="ire-gauge-track">
+          <div class="ire-gauge-fill" style="width:${pct}%;background:${gradients[cls]};"></div>
+          <div class="ire-gauge-marker" style="left:${Math.min(1.50/2.5,1)*100}%;" title="1.50"></div>
+          <div class="ire-gauge-marker" style="left:${Math.min(1.80/2.5,1)*100}%;" title="1.80"></div>
+        </div>
+        <div class="ire-gauge-labels">
+          <span>0</span><span style="margin-left:${Math.min(1.50/2.5,1)*100-4}%">1.50</span><span style="margin-left:${(Math.min(1.80/2.5,1)-Math.min(1.50/2.5,1))*100-4}%">1.80</span><span>2.50+</span>
+        </div>
+      </div>
     </div>`;
 }
 
