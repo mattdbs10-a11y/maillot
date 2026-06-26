@@ -174,6 +174,11 @@ function buildPage2(ss) {
   var YEAR_PCT_COL = YEAR_NB_COL + 1;
   var TOTAL_COLS   = YEAR_PCT_COL;
 
+  // ── Étendre la feuille au nombre de colonnes nécessaires ──────────────────
+  var neededCols = YEAR_PCT_COL;
+  var currentCols = sh.getMaxColumns();
+  if (currentCols < neededCols) sh.insertColumnsAfter(currentCols, neededCols - currentCols);
+
   // ── Largeurs ───────────────────────────────────────────────────────────────
   sh.setColumnWidth(1, 170);
   for (var m = 0; m < MONTHS.length; m++) {
@@ -407,6 +412,9 @@ function buildPage3(ss) {
   var TOT_PCT_ROW = TOT_NB_ROW + 1;
   var TOTAL_COLS  = NB_MATCHS_P3 + 2;
 
+  var currentCols3 = sh.getMaxColumns();
+  if (currentCols3 < TOTAL_COLS) sh.insertColumnsAfter(currentCols3, TOTAL_COLS - currentCols3);
+
   sh.setColumnWidth(1, 170);
   for (var m = 1; m <= NB_MATCHS_P3; m++) sh.setColumnWidth(m+1, 90);
 
@@ -510,6 +518,9 @@ function buildPage4(ss) {
   var PLAYER_ROW = 9;
   var FIRST_COL  = 2;
   var TOTAL_COLS = 1 + NB_MATCHS_P4 * COLS_PM4;
+
+  var currentCols4 = sh.getMaxColumns();
+  if (currentCols4 < TOTAL_COLS) sh.insertColumnsAfter(currentCols4, TOTAL_COLS - currentCols4);
 
   sh.setColumnWidth(1, 170);
 
