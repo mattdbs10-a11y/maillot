@@ -190,9 +190,6 @@
     .coach-hdr { display:flex; align-items:center; justify-content:space-between; width:100%; max-width:560px; margin-bottom:16px; }
     .coach-title { font-size:18px; font-weight:900; }
 
-    /* LOADING */
-    .loading-wrap { display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:100vh; }
-    .loader { width:44px; height:44px; border-radius:50%; border:3px solid var(--border); border-top-color:var(--green); animation:spin .8s linear infinite; margin-bottom:14px; }
     @keyframes spin { to{transform:rotate(360deg)} }
 
     /* NOTIF */
@@ -221,14 +218,8 @@
 <body>
 <div id="app">
 
-  <!-- LOADING -->
-  <div id="screen-loading" class="screen active loading-wrap">
-    <div class="loader"></div>
-    <p style="color:var(--muted);font-size:13px;">Connexion au tableau...</p>
-  </div>
-
   <!-- WELCOME -->
-  <div id="screen-welcome" class="screen">
+  <div id="screen-welcome" class="screen active">
     <div class="app-header">
       <div class="club-badge" id="hdr-badge">ESG</div>
       <div class="club-info">
