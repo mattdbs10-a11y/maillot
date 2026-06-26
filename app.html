@@ -439,12 +439,16 @@ let S = {
 };
 
 // ── Boot ──
-(async () => {
+(() => {
   loadSettings();
   loadUpcoming();
-  await syncSheet();
+  // Affiche la démo immédiatement, synchro en arrière-plan
+  S.players = demoPlayers();
+  ensurePins(S.players);
   renderWelcome();
   showScreen('welcome');
+  // Tentative de synchro silencieuse après l'affichage
+  syncSheet();
 })();
 
 // ─────────────────────────────────────────────
