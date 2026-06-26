@@ -294,6 +294,24 @@ def build_page2(ws):
     dv.sqref = " ".join(ranges)
     ws.add_data_validation(dv)
 
+    # ── Formatage conditionnel par valeur (P/AJ/AI/B) ────────────────────────
+    # Chaque règle s'applique sur toutes les plages de séances
+    # La formule utilise la cellule en haut à gauche de chaque plage (référence relative)
+    cf_values = [
+        ("P",  "27AE60", "FFFFFF"),   # Présent    → vert
+        ("AJ", "F1C40F", "5D4E00"),   # Abs. just. → jaune
+        ("AI", "E74C3C", "FFFFFF"),   # Abs. injus → rouge
+        ("B",  "8E44AD", "FFFFFF"),   # Blessé     → violet
+    ]
+    for rng in ranges:
+        top_left = rng.split(":")[0]   # ex: "B6"
+        for val, bg_hex, fg_hex in cf_values:
+            ws.conditional_formatting.add(rng, FormulaRule(
+                formula=[f'{top_left}="{val}"'],
+                fill=F(bg_hex),
+                font=Font(bold=True, color=fg_hex, name="Arial", size=10)
+            ))
+
     # ── Lignes joueurs ────────────────────────────────────────────────────────
     for r in range(PLAYER_ROW, PLAYER_ROW + NB_PLAYERS):
         player_idx = r - PLAYER_ROW + 2
