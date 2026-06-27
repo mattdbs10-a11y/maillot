@@ -585,10 +585,26 @@ function mk(name,pr,mc,cr,mt,mr,min,g,a,ire){
 // ─────────────────────────────────────────────
 // PINS
 // ─────────────────────────────────────────────
+const DEMO_PINS = {
+  'Thomas Dupont':   '1101',
+  'Lucas Martin':    '1102',
+  'Mathis Bernard':  '1103',
+  'Noah Leroy':      '1104',
+  'Ethan Moreau':    '1105',
+  'Hugo Petit':      '1106',
+  'Maxime Dubois':   '1107',
+  'Kylian Fontaine': '1108',
+};
+
 function getPins() { return JSON.parse(localStorage.getItem(K_PINS)||'{}'); }
 function ensurePins(players) {
   const pins = getPins(); let changed = false;
-  players.forEach(p => { if (!pins[p.name]) { pins[p.name] = rnd4(); changed = true; } });
+  players.forEach(p => {
+    if (!pins[p.name]) {
+      pins[p.name] = DEMO_PINS[p.name] || rnd4();
+      changed = true;
+    }
+  });
   if (changed) ls(K_PINS, pins);
 }
 function regen() {
